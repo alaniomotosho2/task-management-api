@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Task Viewer</title>
+</head>
+<body>
+<h1>WebSocket Task Viewer</h1>
+<div>
+    <input type="text" id="username" placeholder="Username"/>
+    <input type="password" id="password" placeholder="Password"/>
+    <button onclick="authenticate()">Login</button>
+</div>
+<pre id="output"></pre>
+<input type="text" id="input" placeholder="Type a message"/>
+<button onclick="sendMessage()">Send</button>
+<button onclick="getTasks()">Get Tasks</button>
+<script>
+    var ws;
+    var token;
+
+    function authenticate() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        fetch('http://localhost:8080/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: username, password: password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            token = data.token;
+            openWebSocket(username);
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function openWebSocket(username) {
+        ws = new WebSocket("ws://localhost:8080/api/websocket/tasks/" + username);
+        ws.onopen = function() {
+            ws.send(JSON.stringify({ type: "authenticate", token: token }));
+        };
+        ws.onmessage = function(event) {
+            document.getElementById('output').textContent += event.data + "\n";
+        };
+        ws.onerror = function(event) {
+            console.error("WebSocket error observed:", event);
+        };
+    }
+
+    function sendMessage() {
+        var input = document.getElementById('input').value;
+        ws.send(input);
+    }
+
+    function getTasks() {
+        ws.send("get-tasks");
+    }
+</script>
+</body>
+</html>
