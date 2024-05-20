@@ -15,6 +15,7 @@
 - [Project Setup](#project-setup)
 - [Database Migration](#database-migration)
 - [Running the Application Locally](#running-the-application-locally)
+- [Swagger API documentation](#Swagger API documentation)
 - [Running Unit Tests](#running-unit-tests)
 - [Deployment](#deployment)
 
@@ -53,6 +54,14 @@ the content of .env.example and update appropriately.
 ```shell script
 
 ./mvnw compile quarkus:dev
+
+```
+
+## Swagger API documentation
+The access Swagger documentation, ensure the app is running and then visit this url below
+```shell script
+
+http://localhost:8080/q/swagger-ui
 
 ```
 
