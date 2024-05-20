@@ -38,8 +38,8 @@ This project uses PostgreSQL and H2. Ensure you have PostgreSQL installed and ru
 ## Clone the Repository
 project can be cloned from the link provided
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/alaniomotosho2/task-management-api.git
+cd task-management-api
 ````
 
 ## Running the application in dev mode
