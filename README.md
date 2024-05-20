@@ -5,6 +5,7 @@
 ![Project Screenshot](src/main/resources/img.png)
 ![Project Screenshot](src/main/resources/img_1.png)
 ![Project Screenshot](src/main/resources/img_2.png)
+![Project Screenshot](src/main/resources/img_4.png)
 
 ## Table of Contents
 - [Overview](#overview)
